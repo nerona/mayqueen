@@ -1,0 +1,74 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/home.css')
+  include ./components/header.jade
+  
+  div#home
+    //-
+    div.slider
+      img(src='/images/logo.jpg')
+    //- 跑马灯
+    div.marquee
+      marquee#home-mq(behavior='scroll' bgcolor='#FFFFCC' scrollamount='4') 公告: 新品上市新品上市新品上市新品上市。温馨提示: 新品上市。
+    
+    //- 热门推荐
+    div.zone
+      div.z-title 热门推荐
+      ul.z-list
+        - if(suggest != '') 
+          each val, index in suggest
+            li
+              a(href='#')
+                div.z-item(data-id='#{val.id}')
+                  div.z-img 
+                    img(src='#{val.image}')
+                  div.z-name #{val.name}
+                  div.z-price 
+                    div &yen; #{val.price}
+                    div.buy 订购
+        - else 
+          div.z-empty
+            div.info 没有找到相关的商品
+            div.other 去逛逛
+    //- 甜品区
+    div.zone
+      div.z-title 甜品区
+      ul.z-list
+        - if(tianpin != '') 
+          each val, index in tianpin
+            li
+              a(href='#')
+                div.z-item(data-id='#{val.id}')
+                  div.z-img 
+                    img(src='#{val.image}')
+                  div.z-name #{val.name}
+                  div.z-price 
+                    div &yen; #{val.price}
+                    div.buy 订购
+        - else 
+          div.z-empty
+            div.info 没有找到相关的商品
+            div.other 去逛逛
+    //- 饮品区
+    div.zone
+      div.z-title 饮品区
+      ul.z-list
+        - if(yinpin != '') 
+          each val, index in yinpin
+            li
+              a(href='#')
+                div.z-item(data-id='#{val.id}')
+                  div.z-img 
+                    img(src='#{val.image}')
+                  div.z-name #{val.name}
+                  div.z-price 
+                    div &yen; #{val.price}
+                    div.buy 订购
+        - else 
+          div.z-empty
+            div.info 没有找到相关的商品
+            div.other 去逛逛
+
+  include ./components/footer.jade
+  include ./components/fixBar.jade
